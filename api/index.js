@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const connection = require('./config/database');
+
 const postRoutes = require('./src/routes/post.route');
+const authRoutes = require('./src/routes/auth.route');
+
 const PORT = process.env.PORT || 8000;
 const cors = require('cors');
 
@@ -16,6 +19,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', postRoutes)
+app.use('/api', authRoutes)
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`)
