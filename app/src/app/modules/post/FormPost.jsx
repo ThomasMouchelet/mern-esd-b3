@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create, getPost } from "../services/post.service";
+import { create, getPost } from "../../../services/post.service";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const FormPost = () => {
@@ -15,6 +15,7 @@ const FormPost = () => {
     const fetchPost = async () => {
         try {
             const data = await getPost(id)
+            console.log(data)
         } catch (error) {
             console.log(error);
         }

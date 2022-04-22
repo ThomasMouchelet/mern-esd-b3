@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { deletePost, getPosts } from "../services/post.service";
-import {Link} from 'react-router-dom'
+import { deletePost, getPosts } from "../../../services/post.service";
+import { Link } from 'react-router-dom'
 
 const PostsList = () => {
     const [posts, setPosts] = useState([]);
