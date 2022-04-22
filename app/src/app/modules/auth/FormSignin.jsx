@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { signin } from "../../../services/auth.service";
 
 const FormSignin = () => {
     const [credentials, setCredentials] = useState({})
@@ -10,9 +11,14 @@ const FormSignin = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(credentials)
+        try {
+            await signin(credentials)
+            // TODO :redirect to route admin
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return ( 

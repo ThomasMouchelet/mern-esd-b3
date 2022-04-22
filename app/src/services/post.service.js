@@ -1,22 +1,27 @@
-import axios from 'axios';
+import api from "./api.service"
 
 function getPosts() {
-  return axios.get(`${process.env.REACT_APP_API_URL}/posts`)
+  return api.get(`/posts`)
     .then(response => response.data);
 }
 
 function deletePost(id) {
-  return axios.delete(`${process.env.REACT_APP_API_URL}/posts/${id}`)
+  return api.delete(`/posts/${id}`)
     .then(response => response.data);
 }
 
 function create(credentials) {
-  return axios.post(`${process.env.REACT_APP_API_URL}/posts`, credentials)
+  return api.post(`/posts`, credentials)
     .then(response => response.data);
 }
 
 function getPost(id){
-  return axios.get(`${process.env.REACT_APP_API_URL}/posts/${id}`)
+  return api.get(`/posts/${id}`)
+    .then(response => response.data);
+}
+
+function update(id, credentials) {
+  return api.put(`/posts/${id}`, credentials)
     .then(response => response.data);
 }
 
@@ -24,5 +29,6 @@ export {
     getPosts,
     deletePost,
     create,
-    getPost
+    getPost,
+    update
 }

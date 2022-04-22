@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create, getPost } from "../../../services/post.service";
+import { create, getPost, update } from "../../../services/post.service";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const FormPost = () => {
@@ -10,12 +10,14 @@ const FormPost = () => {
     useEffect(()=>{
         console.log("id from param : ", id)
         
+        id && fetchPost()
     },[])
 
     const fetchPost = async () => {
         try {
             const data = await getPost(id)
             console.log(data)
+            setcredentials(data)
         } catch (error) {
             console.log(error);
         }
@@ -30,13 +32,18 @@ const FormPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
         try {
-            await create(credentials);
-            navigate("/");
+            if(id){
+                await update(id, credentials)
+            } else{
+                await create(credentials);
+                navigate("/");
+            }
         } catch (error) {
             console.log(error);
         }
+
     }
 
     return ( 
@@ -49,14 +56,16 @@ const FormPost = () => {
                     onChange={handleChange} 
                     placeholder="title" 
                     name="title"
+                    value={credentials.title || ""}
                 />
                 <input 
                     type="text" 
                     onChange={handleChange} 
                     placeholder="content" 
                     name="content"
+                    value={credentials.content || ""}
                 />
-                <input type="submit" value="ajouter" />
+                <input type="submit" value={id ? "Update" : "Create"} />
             </form>
         </div>
      );
