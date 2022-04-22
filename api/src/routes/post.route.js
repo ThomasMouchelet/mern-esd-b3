@@ -7,6 +7,6 @@ router.post('/posts', authenticateToken,PostController.create)
 router.get('/posts',PostController.findAll)
 router.get('/posts/:id', PostController.findOne)
 router.delete('/posts/:id', authenticateToken, PostController.delete)
-router.put('/posts/:id', PostController.update)
+router.put('/posts/:id', authenticateToken,PostController.update)
 
 module.exports = router;

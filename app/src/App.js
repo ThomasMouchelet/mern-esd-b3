@@ -1,17 +1,10 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import FormPost from './app/modules/post/FormPost';
-import PostsList from './app/pages/post/PostsList';
-import FormSignin from './app/modules/auth/FormSignin';
+import {BrowserRouter, Routes} from 'react-router-dom';
+import MainRouter from './app/routes/MainRouter';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/auth/signin" element={<FormSignin />} />
-        <Route path="/" element={<PostsList />} />
-        <Route path="/posts/new" element={<FormPost />} />
-        <Route path="/posts/:id" element={<FormPost />} />
-      </Routes>
+        <MainRouter />
     </BrowserRouter>
   );
 }
