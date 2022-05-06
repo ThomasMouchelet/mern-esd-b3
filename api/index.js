@@ -5,7 +5,7 @@ const connection = require('./config/database');
 const postRoutes = require('./src/routes/post.route');
 const authRoutes = require('./src/routes/auth.route');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 const cors = require('cors');
 
 connection()
@@ -24,3 +24,5 @@ app.use('/api', authRoutes)
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`)
 })
+
+module.exports = app;

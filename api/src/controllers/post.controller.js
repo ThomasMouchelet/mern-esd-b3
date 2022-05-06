@@ -12,7 +12,7 @@ const PostController = {
         }
     },
     findAll: async (req, res) => {
-        try {
+        try { 
             const posts = await Post.find();
             res.send(posts);
         } catch (error) {
