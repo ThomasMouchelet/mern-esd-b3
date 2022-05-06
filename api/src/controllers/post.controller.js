@@ -6,7 +6,7 @@ const PostController = {
             const post = await Post.create(req.body);
             post.save();
         
-            res.send(post);
+            res.status(200).send(post);
         } catch (error) {
             res.status(500).send(error);
         }

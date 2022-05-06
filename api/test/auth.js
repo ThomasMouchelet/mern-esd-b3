@@ -22,7 +22,8 @@ module.exports.signin = async (app, request) => {
     const response = await request(app)
             .post('/api/auth/signin')
             .send(user)
+            
             expect(response.statusCode).toBe(200);
-    
+            
         return response;
 }

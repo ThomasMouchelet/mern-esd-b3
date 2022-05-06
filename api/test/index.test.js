@@ -19,7 +19,7 @@ describe('Auth tests', () => {
 })
 
 describe('Create post without accessToken', () => { 
-   test('Create post', async () => {
+   test('Create post without accessToken', async () => {
       const response = await PostTest.create(app, request);
       expect(response.statusCode).toBe(401);
    })
@@ -27,14 +27,18 @@ describe('Create post without accessToken', () => {
 
 describe('Create post with accessToken', () => {
    beforeAll( async ()=> {
-      const response = await signup(app, request);
-      const { accessToken } = response.body;
-      request.set('Authorization', `Bearer ${accessToken}`);
+      await signup(app, request);
    })
 
-   test('Create post', async () => {
-      const response = PostTest.create(app, request);
-      expect(response.statusCode).toBe(200);
+   test('Create post with accessToken', async () => {
+      const responseAuth = await signin(app, request);
+      const { accessToken } = responseAuth.body;
+      
+      const response = await PostTest.create(app, request, accessToken);
+      await expect(response.statusCode).toBe(200);
    })
 
+   afterAll(() => { 
+      cleanUsersData()
+   })
 })
